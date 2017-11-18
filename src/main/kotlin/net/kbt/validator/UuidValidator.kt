@@ -1,16 +1,18 @@
 package net.kbt.validator
 
-class IntegerValidator : Validator {
+import java.util.*
+
+class UuidValidator : Validator {
     companion object {
-        private val MSG_NOT_AN_INTEGER = "not an integer"
+        private val MSG_NOT_AN_UUID = "not an uuid"
     }
 
     override fun validate(obj: Any): Result {
         val result = Result()
         try {
-            obj as Number
+            UUID.fromString(obj as String)
         } catch (e: Exception) {
-            result.add(Message(MSG_NOT_AN_INTEGER))
+            result.add(Message(MSG_NOT_AN_UUID))
         }
 
         return result
